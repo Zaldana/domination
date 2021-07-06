@@ -27,16 +27,13 @@ imageArea("image-3", 'https://upload.wikimedia.org/wikipedia/commons/b/b5/SOADJO
 
 //5. Argument li removal
 function removeFirst() { 
-    const argumentsUl = document.getElementById("arguments");
-    argumentsUl.removeChild(argumentsUl.childNodes[0]); 
+    const firstLi = document.querySelector('#arguments li');
+    firstLi.remove(); 
 }
 
 //6. Call removal//Doesn't work when called only twice
 removeFirst();
 removeFirst();
-removeFirst(); 
-removeFirst();
-
 
 //7. Font size function
 function fontSize(size, id) { 
@@ -53,18 +50,17 @@ fontSize('60px', "heading");
 
 //1. Create element //Not working :(
 
-// function elementCreate(domElement) {
-//     const argumentsUl = document.getElementById("arguments");
-//     const newElem = document.querySelector(domElement);
-//     newElem.appendChild(argumentsUl);
-// }
+function elementAppend(domElement) {
+    const argumentsUl = document.querySelector("#arguments");
+    argumentsUl.appendChild(domElement);
+}
 
 //2. Image
 const imgArd = document.createElement('IMG');
 imgArd.src = 'https://upload.wikimedia.org/wikipedia/en/b/b3/Ardbeg_sign.jpg';
 
 //Call create element function 
-// elementCreate(imgArd);
+elementAppend(imgArd);
 
 //3. Image resize function
 function resize(imageElement) {
@@ -91,26 +87,29 @@ invisible(heading);
 //Part 3 =============================================================
 
 //1. New <li> function
-function newListitem(string){
+function newListitem(string) {
 
-    const newLi = document.createElement("LI");
+    const newLi = document.createElement('li');
     newLi.innerText = string;
     return newLi
 
 }
 
 //2. New li call
-newListitem('this is a new list item');
+const testLi = newListitem('this is a new list item');
+elementAppend(testLi);
 
 //3. New heading
-function  newHeader(size, string) {
+function  createHeader(size, string) {
 
-    const newHeader = document.createElement("HEADER");
-    newLi.innerText = string;
-    newHeader.style.fontSize = size;
+    const tagName = 'h' + size;
+    const newHeader = document.createElement(tagName);
+    newHeader.innerText = string;
+    return newHeader;
 
 }
 
 //4. New Header call
-newHeader("This is a new Header");
+const testHeader = createHeader('3','This is a new Header');
+elementAppend(testHeader);
 
